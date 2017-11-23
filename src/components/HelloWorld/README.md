@@ -1,0 +1,5 @@
+HelloWorld example:
+
+```js
+<HelloWorld/>
+```
