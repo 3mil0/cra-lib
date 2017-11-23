@@ -1,7 +1,15 @@
 {
   "name": "cra-lib",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "author": {
+    "name": "Stokedbits"
+  },
+  "main": "build/lib/components/index.js",
+  "types": "build/lib/components/index.d.ts",
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "dependencies": {
     "@types/enzyme": "^3.1.3",
     "@types/enzyme-adapter-react-16": "^1.0.1",
@@ -16,7 +24,8 @@
     "start:js": "react-scripts-ts start",
     "start": "npm-run-all -p watch:sass:to:css start:js",
     "build:js": "react-scripts-ts build",
-    "build": "npm-run-all build-css build:js",
+    "build": "npm-run-all build:sass:to:css build:js",
+    "build:lib": "tsc && npm build && npm run build:sass:to:css && npm run copy:css:to:lib",
     "test": "react-scripts-ts test --env=jsdom",
     "eject": "react-scripts-ts eject",
     "styleguide": "npm-run-all -p watch:sass:to:css styleguidist",
@@ -27,7 +36,7 @@
     "copy:base:css": "cpx \"./src/**/*.css\" ./build/lib/",
     "copy:component:css": "cpx \"./src/components/**/*.css\" ./build/lib/components",
     "build:sass:to:css": "node-sass-chokidar src/ -o src/",
-    "watch:sass:to:css": "npm run build:sass:to:css && node-sass-chokidar src/ -o src/ --watch --recursive"
+    "watch:sass:to:css": "node-sass-chokidar src/ -o src/ --watch --recursive"
   },
   "devDependencies": {
     "@types/jest": "^21.1.5",
@@ -38,5 +47,8 @@
     "npm-run-all": "^4.1.2",
     "react-scripts-ts": "^2.8.0",
     "react-styleguidist": "^6.0.33"
-  }
+  },
+  "files": [
+    "build/lib"
+  ]
 }
